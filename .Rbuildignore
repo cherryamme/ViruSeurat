@@ -1,0 +1,7 @@
+^ViruSeurat\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^testdata$
+^fig$
+^sample_info.tsv$
+.Rdata$

@@ -1,0 +1,24 @@
+Package: ViruSeurat
+Title: Do job solve discovering relation ship between transpoter and Virus in singlecell-level
+Version: 0.0.1
+Author: Jesse
+Maintainer: Jesse <cherryamme@163.com>
+Description: ViruSeurat solves discovering relation ship between transpoter and Virus in singlecell-level.
+  maybe useful for bioinformatic. Build on base Seurat and some useful tools in linux shell. 
+  It is my first R-package, so it may has lots of bugs that I don't notice. If you find them, please contact me by email cherryamme@163.com.
+  Hope this package will help you.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    checkmate,
+    clustree,
+    DataExplorer,
+    ggplot2,
+    ggraph,
+    magrittr,
+    patchwork,
+    Seurat,
+    stringr,
+    utils
