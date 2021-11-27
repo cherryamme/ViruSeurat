@@ -4,7 +4,10 @@
 \alias{Input_Testdata}
 \title{It will generat a Test Data}
 \usage{
-Input_Testdata()
+Input_Testdata(pos = 1)
+}
+\arguments{
+\item{pos}{enviroment position}
 }
 \description{
 It will generat a Test Data
