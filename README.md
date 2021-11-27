@@ -15,7 +15,7 @@ Hope this package will help you.
 You can install the development version of ViruSeurat from [GitHub](https://github.com/) with:
 
 ``` r
- if( !require("devtools")){
+ if (!require("devtools")){
   install.package("devtools")}
 devtools::install_github("cherryamme/ViruSeurat")
 ```

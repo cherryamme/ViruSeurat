@@ -10,8 +10,7 @@
 
 VirusinSclist <- function(x = vclist,
                           sct = sclist,
-                          meta = metadata
-                          ) {
+                          meta = metadata) {
   if (missing(x)) {
     message("Missing X, check the input, replacing the default vclist")
     if (!exists("vclist")) {
@@ -39,13 +38,15 @@ VirusinSclist <- function(x = vclist,
   cat("(", names(x), ")  correspond with (", idm, ") in RAW_data.")
   pd <- txtProgressBar(style = 3)
   for (i in 1:length(x)) {
-    cat("\n writing in vclist No.",
-        i,
-        "element ...........",
-        i,
-        "/",
-        length(x),
-        "\n")
+    cat(
+      "\n writing in vclist No.",
+      i,
+      "element ...........",
+      i,
+      "/",
+      length(x),
+      "\n"
+    )
     setTxtProgressBar(pd, i / length(x))
     # filter intersection
     idx <- is.element(names(x[[i]]), colnames(sct[[idm[i]]]))

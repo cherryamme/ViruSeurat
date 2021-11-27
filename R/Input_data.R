@@ -21,10 +21,10 @@ Input_Sclist <- function(meta = metadata,
                          inputfiledir = "data/",
                          cellmin = 3,
                          fmin = 20) {
-  #Judge must be param
+  # Judge must be param
   if (missing(meta)) {
     message(
-      'Missing input meta, you need to give imported data, save it in the working directory to be named ** _ info.tsv, import to metadata, try to use the default metadata'
+      "Missing input meta, you need to give imported data, save it in the working directory to be named ** _ info.tsv, import to metadata, try to use the default metadata"
     )
   }
   meta <- Check_meta()
@@ -39,14 +39,14 @@ Input_Sclist <- function(meta = metadata,
   }
   x <- meta[["RAW_data"]]
   meta <- meta[["RAW_meta"]]
-  #Judge optinal param
+  # Judge optinal param
   if (missing(cellmin)) {
-    message('Missing cellmin, Use default min.cells = 3')
+    message("Missing cellmin, Use default min.cells = 3")
   }
   if (missing(fmin)) {
-    message('Missing fmin, Use default min.features = 20')
+    message("Missing fmin, Use default min.features = 20")
   }
-  #Input data to X
+  # Input data to X
   message(
     "\n \n x has ",
     length(x),
@@ -54,13 +54,15 @@ Input_Sclist <- function(meta = metadata,
   )
   pb <- txtProgressBar(style = 3)
   for (i in 1:length(x)) {
-    cat("\n Inporting No.",
-        i,
-        " element............",
-        i,
-        "/",
-        length(x),
-        "\n")
+    cat(
+      "\n Inporting No.",
+      i,
+      " element............",
+      i,
+      "/",
+      length(x),
+      "\n"
+    )
     Sys.sleep(0.5)
     setTxtProgressBar(pb, i / length(x))
     if (!file.exists(paste0(inputfiledir, x[i], ".csv"))) {
@@ -84,46 +86,50 @@ Input_Sclist <- function(meta = metadata,
   message("Prepare to generate Seurat-list Object..\n")
 
 
-  #Input to Seurat-list object, Use param cellmin,fmin
+  # Input to Seurat-list object, Use param cellmin,fmin
   message("Seurat-list Configuration : \n")
   message("          min.cells : ", cellmin, "\n")
   message("          min.features : ", fmin, "\n")
-  message("        split meta-data to patient:", str_sub(meta,-1), "\n")
+  message("        split meta-data to patient:", str_sub(meta, -1), "\n")
   message("        split meta-data to sample:", str_sub(meta, 1, 3), "\n")
   message("        Initialization viral counts as 0 \n")
 
   sclist <- list()
   pd <- txtProgressBar(style = 3)
   for (i in 1:length(x)) {
-    cat("\n Inputting No.",
-        i,
-        "element....",
-        x[i],
-        "........",
-        i,
-        "/",
-        length(x),
-        "\n")
+    cat(
+      "\n Inputting No.",
+      i,
+      "element....",
+      x[i],
+      "........",
+      i,
+      "/",
+      length(x),
+      "\n"
+    )
     Sys.sleep(0.5)
     setTxtProgressBar(pd, i / length(x))
     sclist[[i]] <-
       CreateSeuratObject(
-        get(paste0('data', i)),
+        get(paste0("data", i)),
         project = x[i],
         min.cells = cellmin,
         min.features = fmin
       )
     sclist[[i]]@meta.data$orig.ident <- factor(meta[i])
-    sclist[[i]]@meta.data$patient <- factor(str_sub(meta[i],-1))
+    sclist[[i]]@meta.data$patient <- factor(str_sub(meta[i], -1))
     sclist[[i]]@meta.data$sample <- factor(str_sub(meta[i], 1, 3))
     sclist[[i]]@meta.data$virus <- 0
     sclist[[i]]@meta.data$hasvirus <- F
-    message("\n No.",
-            i,
-            " sclist element already compelete! ",
-            "   Total: ",
-            length(x),
-            "\n")
+    message(
+      "\n No.",
+      i,
+      " sclist element already compelete! ",
+      "   Total: ",
+      length(x),
+      "\n"
+    )
   }
   close(pd)
   message("Save inputted sclist as 'Sclist_input.Rdata' Rdata ")
@@ -157,7 +163,7 @@ Input_Vclist <-
     if (missing(x)) {
       message(
         'Missing X, the Viruscount format is:x=c("CRR115711","CRR115712")    --- ',
-        'Try Use default viruscount replace '
+        "Try Use default viruscount replace "
       )
     }
     if (!exists("viruscount")) {
@@ -166,42 +172,47 @@ Input_Vclist <-
         inputfiledir,
         list.files(path = inputfiledir, pattern = "_Exp.tsv")
       ))) {
-        viruscount = list.files(path = inputfiledir, pattern = "_Exp.tsv") %>% gsub(pattern = "_Exp.tsv", replacement = "")
+        viruscount <- list.files(path = inputfiledir, pattern = "_Exp.tsv") %>% gsub(pattern = "_Exp.tsv", replacement = "")
         cat("\n data/ has **_Exp.tsv file:  ", viruscount, "\n")
       } else {
         stop("data/ hasn't detect **_Exp.tsv file: Interrupt import")
       }
-    } else{
+    } else {
       message("!! Detect Viruscount variables in global variables, try to apply")
       cat("\n viruscount in global variables has content: ", viruscount)
       checkmate::assertFileExists(paste0(inputfiledir, viruscount, "_Exp.tsv"))
     }
-    sum = 0
+    sum <- 0
     pb <- txtProgressBar(style = 3)
     vclist <- list()
     for (i in 1:length(x)) {
-      cat("\n Importing No.",
-          i,
-          " element............",
-          i,
-          "/",
-          length(x),
-          "\n")
+      cat(
+        "\n Importing No.",
+        i,
+        " element............",
+        i,
+        "/",
+        length(x),
+        "\n"
+      )
       Sys.sleep(0.5)
       setTxtProgressBar(pb, i / length(x), title = paste0("Importing ", x[1], "....."))
       exp <-
         read.csv(paste0(inputfiledir, x[i], "_Exp.tsv"),
-                 sep = "\t",
-                 row.names = 1)
+          sep = "\t",
+          row.names = 1
+        )
       idx <- str_detect(rownames(exp), viralname)
       if (any(idx)) {
-        assign(x[i], exp[idx,])
+        assign(x[i], exp[idx, ])
         vclist[[x[i]]] <- colSums(get(x[i]))[colSums(get(x[i])) > 0]
         class(vclist[[i]]) <- "vcsingle"
-        message("\n Import  ",
-                paste0(inputfiledir, x[i], "_Exp.tsv"),
-                " Successfuly! ")
-        sum = sum + 1
+        message(
+          "\n Import  ",
+          paste0(inputfiledir, x[i], "_Exp.tsv"),
+          " Successfuly! "
+        )
+        sum <- sum + 1
       }
     }
     message(
@@ -283,7 +294,7 @@ Check_meta <- function() {
 #' @export
 #' @description  Check_meta() ,create fig/
 #'
-Check_figdir<-function(){
+Check_figdir <- function() {
   if (!dir.exists("fig")) {
     message("\nThe current directory does not exist fig/, create a new fig/ folder ...")
     dir.create("fig")
@@ -296,4 +307,4 @@ Check_figdir<-function(){
 
 
 
-globalVariables(c("metadata", "vclist", "sclist","scRNA","ccRNA","svclist"))
+globalVariables(c("metadata", "vclist", "sclist", "scRNA", "ccRNA", "svclist","Testmeta","TestSclist","TestVclist"))

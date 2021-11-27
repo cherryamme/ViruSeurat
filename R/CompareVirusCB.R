@@ -24,7 +24,7 @@ CompareVirusCB <- function(vct = vclist, sct = sclist) {
 CompareVirusCB.vcsingle <- function(vct, sct = sclist) {
   if (missing(vct)) {
     stop("Please select the read data set for the virus, otherwise automatically exits")
-  } else{
+  } else {
     message("Input dataset is  ", substitute(vct), "\n")
   }
   if (missing(sct)) {
@@ -55,7 +55,7 @@ CompareVirusCB.vcsingle <- function(vct, sct = sclist) {
 CompareVirusCB.vclist <- function(vct, sct = sclist) {
   if (missing(vct)) {
     stop("Please select the read data set for the virus, otherwise automatically exits")
-  } else{
+  } else {
     message("Input dataset is ", substitute(vct), "\n")
   }
   if (missing(sct)) {
