@@ -12,4 +12,3 @@ Input_Testdata <- function(pos=1) {
   assign('TestSclist',Input_Sclist(meta = Testmeta, inputfiledir = Testdata),envir = as.environment(pos))
   assign('TestVclist',Input_Vclist(inputfiledir = Testdata),envir = as.environment(pos))
 }
-Input_Testdata()
