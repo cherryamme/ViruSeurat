@@ -3,7 +3,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/cherryamme/ViruSeurat)](https://github.com/cherryamme/ViruSeurat/stargazers)    [![GitHub issues](https://img.shields.io/github/issues/cherryamme/ViruSeurat)](https://github.com/cherryamme/ViruSeurat/issues)   [![GitHub license](https://img.shields.io/github/license/cherryamme/ViruSeurat)](https://github.com/cherryamme/ViruSeurat/blob/master/LICENSE)
 <!-- badges: start -->
 
-![Jesse](./ViruSeurat.png)
+![Jesse](./ViruSeurat_logo.png)
 
 <!-- badges: end -->
 
