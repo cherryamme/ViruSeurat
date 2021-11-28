@@ -26,8 +26,8 @@ Input_Sclist <- function(meta = metadata,
     message(
       "Missing input meta, you need to give imported data, save it in the working directory to be named ** _ info.tsv, import to metadata, try to use the default metadata"
     )
-  }
   meta <- Check_meta()
+  }
   if (all(colnames(meta) == c("RAW_data", "RAW_meta"))) {
     message(
       "Detected Meta two columns of 'Raw_Data', 'Raw_meta', continued to perform import \n\n"
