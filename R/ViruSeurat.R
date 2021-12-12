@@ -1,8 +1,18 @@
 
 
+pkgs=c("Seurat", "clustree", "ggplot2", "stringr", "patchwork")
 
-# loaded the package what todo 
-.onAttach<-function(x) {
+
+#' Title loaded the package what todo
+#'
+#' @param libname libname
+#' @param pkgname pkgname
+#'
+#' @return
+#'
+#' @examples
+#'
+.onAttach<-function(libname, pkgname) {
     suppressMessages({
         suppressWarnings({
             loaded=sapply(pkgs, require, character.only=TRUE)
@@ -32,17 +42,17 @@
 
 #' @return OUTPUT_DESCRIPTION
 #' @details DETAILS
-#' @examples 
+#' @examples
 #' \dontrun{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
 #' }
-#' @export 
+#' @export
 #' @rdname Print_logo
-#' @seealso 
-#'  
-#' @import glue
+#' @seealso
+#'
+#' @import glue crayon
 Print_logo <- function() {
     logo<-c("\033[35m@\033[39m_   _  _     \033[32m*\033[39m         _____             \033[31mby Jesse\033[39m      _   ",
 "| | | |(_)  \033[33m.\033[39m          /  ___|        \033[37mo\033[39m            \033[33m.\033[39m   | |  ",
@@ -50,7 +60,7 @@ Print_logo <- function() {
 "| | | || || '__|| | | | `--. \\ / _ \\| | | || '__|/ _` || __|",
 "\\ \\_/ /| || |   | |_| |/\\__/ /|  __/| |_| || |  | (_| || |_\033[35m@\033[39m",
 " \\___/ |_||_|  \033[37mo\033[39m \\__,_|\\____/  \\___| \\__,_||_| \033[32m*\033[39m \\__,_| \\__|")
-   glue::glue_col("{blue {logo}}")
+   print(glue::glue_col("{blue {logo}}"))
 }
 
 #' @title Print_intro
@@ -58,14 +68,15 @@ Print_logo <- function() {
 
 #' @return intro
 #' @details DETAILS
-#' @examples 
+#' @examples
 #' \dontrun{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
 #' }
-#' @export 
+#' @export
 #' @rdname Print_intro
+#' @import crayon
 
 Print_intro <- function() {
     LOGO=c(bell="\ud83d\udd14",
@@ -73,7 +84,7 @@ Print_intro <- function() {
        gift="\ud83c\udf81",
        bolt="\u26a1",
        star="\u2b50")
-    cat(sample(LOGO,1),magenta(" ViruSeurat: Virus in Seurat Object with tracposon expression \n"))
+    cat(sample(LOGO,1),magenta(" ViruSeurat: Virus in Seurat Object with tracposon expression \n \n"))
 }
 
 #' @title Print_attach
@@ -81,22 +92,21 @@ Print_intro <- function() {
 
 #' @return OUTPUT_DESCRIPTION
 #' @details DETAILS
-#' @examples 
+#' @examples
 #' \dontrun{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
 #' }
-#' @export 
+#' @export
 #' @rdname Print_attach
-#' @seealso 
-#'  
-#' @import glue
+#' @seealso
+#'
+#' @import glue crayon
 Print_attach <- function() {
-    pkgs=c("Seurat", "clustree", "ggplot2", "stringr", "patchwork")
     cat(blue(bold("Packages also been loaded:\n")))
-    pkgs1= paste0(pkgs,collapse = " / ")
-    glue::glue_col("{green {pkgs1}} \n")
+    pkgs1= paste0(pkgs,collapse = " | ")
+    print(glue::glue_col("{green {pkgs1}} \n"))
 }
 
 #' @title Print_dir
@@ -104,22 +114,22 @@ Print_attach <- function() {
 
 #' @return OUTPUT_DESCRIPTION
 #' @details DETAILS
-#' @examples 
+#' @examples
 #' \dontrun{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
 #' }
-#' @export 
+#' @export
 #' @rdname Print_dir
-#' @seealso 
-#'  
-#' @import glue
+#' @seealso
+#'
+#' @import glue crayon
 Print_dir <- function() {
     dir=getwd()
-    cat(blue(bold("Directory now in :")),yellow(dir),"\n")
-    indir=paste0(list.dirs(recursive = F,full.names = F),collapse = " / ")
-    glue::glue_col("{blue {bold Has contents dir :} {green {indir}} \n}")
+    cat(blue(bold("Directory now in : \n")),yellow(dir),"\n")
+    indir=paste0(list.dirs(recursive = F,full.names = F),collapse = " | ")
+    print(glue::glue_col("{blue {bold Has contents dir : } \n {green {indir}} \n}"))
 }
 
 
