@@ -10,7 +10,7 @@ Description: ViruSeurat solves discovering relation ship between transpoter and 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
     checkmate,
     clustree,
@@ -21,4 +21,6 @@ Imports:
     patchwork,
     Seurat,
     stringr,
-    utils
+    utils,
+    glue,
+    crayon
