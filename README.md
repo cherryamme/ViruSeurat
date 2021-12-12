@@ -3,10 +3,14 @@
 [![GitHub stars](https://img.shields.io/github/stars/cherryamme/ViruSeurat?color=red&logo=Adafruit)](https://github.com/cherryamme/ViruSeurat/stargazers)  ![GitHub repo size](https://img.shields.io/github/repo-size/cherryamme/ViruSeurat?color=yellow&label=Project%20Size&logo=Blueprint)   ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/cherryamme/ViruSeurat?logo=R)   ![GitHub last commit](https://img.shields.io/github/last-commit/cherryamme/ViruSeurat) 
 <!-- badges: start -->
 
-![Jesse](./ViruSeurat_logo.png)
+![Jesse](./dev_fig/ViruSeurat_logo.png)
 
 <!-- badges: end -->
 **Viruseurat** is an R software used to check the transposon expression and virus invasion in single cell data. 
+
+[TOC]
+
+## Introduction
 
 It is based on the R package-Seurat, and uses virus expression data and transposon expression data. Virus expression data is generated using STAR comparison virus database, and transposon expression data is generated using scTE.
 
@@ -63,6 +67,7 @@ If you don't want to use original file to build Test data. You can Input Testdat
 There are some basic examples which shows you how to solve a common problem:
 
 ### Main Command
+
 ``` r
 library(ViruSeurat)
 
@@ -100,3 +105,6 @@ Plot_Cluster(x = ccRNA, res = 0.5)
 
 ```
 
+
+## Release Notes
+you can check [Release Notes](./News.md).
